@@ -23,7 +23,7 @@ jobs:
     - name: Publish to Github Packages Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: NicolasMontoya/secret-notes-web/secret-notes
+        name: nicolasmontoya/secret-notes-web/secret-notes
         registry: docker.pkg.github.com
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.GITHUB_TOKEN }}
