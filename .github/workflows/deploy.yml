@@ -34,15 +34,15 @@ jobs:
       env:
           GITHUB_USERNAME: ${{ secrets.USERNAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_PATH_IMAGE: ${{ secrets.REPOSITORY_PATH }}
       with:
         host: ${{ secrets.SERVER_HOST }}
         username: ${{ secrets.SERVER_USERNAME }}
-        password: ${{ secrets.SERVER_PASSWORD }}
+        passphrase: ${{ secrets.SERVER_PASSPHRASE }}
+        key: ${{ secrets.SERVER_KEY }}
         port: ${{ secrets.SERVER_PORT }}
-        envs: GITHUB_USERNAME, GITHUB_TOKEN, GITHUB_PATH_IMAGE
+        envs: GITHUB_USERNAME, GITHUB_TOKEN
         script: |
           docker stop $(docker ps -a -q)
           docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
-          docker pull docker.pkg.github.com/$GITHUB_PATH_IMAGE/secret-notes:latest
-          docker run -dit -p 80:80 docker.pkg.github.com/$GITHUB_PATH_IMAGE
+          docker pull docker.pkg.github.com/nicolasmontoya/secret-notes-web/secret-notes:latest
+          docker run -dit -p 80:80 docker.pkg.github.com/nicolasmontoya/secret-notes-web
