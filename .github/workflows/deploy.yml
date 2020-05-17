@@ -45,4 +45,4 @@ jobs:
           docker stop $(docker ps -a -q)
           docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
           docker pull docker.pkg.github.com/nicolasmontoya/secret-notes-web/secret-notes:latest
-          docker run -dit --name secret_web -p 3000:80 docker.pkg.github.com/nicolasmontoya/secret-notes-web/secret-notes:latest
+          docker run -dit --name secret_web --network proxy_secret -p 3000:80 docker.pkg.github.com/nicolasmontoya/secret-notes-web/secret-notes:latest
